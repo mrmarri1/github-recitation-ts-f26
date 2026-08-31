@@ -2,7 +2,10 @@
 
 import { Response } from "express";
 import { Request } from "express-serve-static-core";
-import fibonacci from "./fib";
+
+type Fibonacci = (n: number) => number;
+
+const fibonacci = module.require("./fib") as Fibonacci;
 
 export default (req: Request<{ num: string }>, res: Response): void => {
   const { num } = req.params;
